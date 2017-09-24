@@ -1,11 +1,11 @@
 'use strict';
 
-let edgeList = [];
-let nodeDict = {};
 const buildEdges = (af) => {
+    let edgeList = [];
+    let nodesDict = {};
     //make node Dict
     af[0].map((e, index) => {
-        nodeDict[e] = index;
+        nodesDict[e] = index;
         edgeList.push(new Array());
     });
     
@@ -16,8 +16,8 @@ const buildEdges = (af) => {
             with: edge[1],
             to: edge[2]
         }
-        edgeList[nodeDict[edge[0]]].push(newEdge);
+        edgeList[nodesDict[edge[0]]].push(newEdge);
     });
-    return edgeList;
+    return { edgeList: edgeList, nodesDict: nodesDict };
 }
 module.exports = buildEdges;

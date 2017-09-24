@@ -2,8 +2,15 @@
 
 //IMPORTS
 const yargs = require('yargs');
+const readline = require('readline');
 const fileHandler = require('./FileHandler');
 const runInterpreter = require('./Interpreter/mainInterpreter');
+
+//config INPUT
+let inputText = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
 
 // ARGV handle
 const argv = yargs
@@ -28,5 +35,13 @@ let JSONfile;
         .catch((err) =>{ throw err; });
     
     //INTERPRETER
-    await runInterpreter(JSONfile);
+    const getText = async() => {
+        inputText.question("", (answer) => {
+            // if(await runInterpreter(JSONfile, answer) console.log('SIM');
+            // else console.log('NÃO');
+            console.log(runInterpreter(JSONfile, answer));
+            getText();
+        });
+    };
+    getText();
 })()
