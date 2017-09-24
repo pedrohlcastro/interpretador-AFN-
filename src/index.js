@@ -2,15 +2,11 @@
 
 //IMPORTS
 const yargs = require('yargs');
-const readline = require('readline');
+const readLine = require('readline-sync');
+const readFileTest = require('line-reader');
 const fileHandler = require('./FileHandler');
 const runInterpreter = require('./Interpreter/mainInterpreter');
 
-//config INPUT
-let inputText = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
 
 // ARGV handle
 const argv = yargs
@@ -22,6 +18,9 @@ const argv = yargs
     .demandOption(['f'])
     .help('h')
     .alias('h', 'help')
+    .alias('t', 'test')
+    .nargs('t', 1)
+    .describe('t', 'Faz o Mesmo que < faz, use para teste')
     .argv;
 
 // RUN INTERPRETER
@@ -35,13 +34,15 @@ let JSONfile;
         .catch((err) =>{ throw err; });
     
     //INTERPRETER
-    const getText = async() => {
-        inputText.question("", (answer) => {
-            // if(await runInterpreter(JSONfile, answer) console.log('SIM');
-            // else console.log('NÃO');
-            console.log(runInterpreter(JSONfile, answer));
-            getText();
+    let line;
+    if(argv.test){
+        readFileTest.eachLine(argv.test, (line, last) => {
+            process.stdout.write(runInterpreter(JSONfile, line)+ '\n');
         });
-    };
-    getText();
+    } else {
+        while(line = readLine.question('')){
+            if(line == 'EOF') break;
+            process.stdout.write(runInterpreter(JSONfile, line)+ '\n');
+        }
+    }
 })()
