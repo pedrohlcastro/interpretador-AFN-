@@ -1,0 +1,37 @@
+{
+  "name": "interpretador-afn-",
+  "version": "1.0.0",
+  "description": "Trabalho LFA interpretador AFN lambda",
+  "main": "index.js",
+  "engines": {
+    "node": ">=7.6"
+  },
+  "engineStrict": true,
+  "scripts": {
+    "postinstall": "node reqCheck.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pedrohlcastro/interpretador-AFN-.git"
+  },
+  "keywords": [
+    "AFN",
+    "lambda",
+    "LFA"
+  ],
+  "author": "Pedro Henrique Lopes de Castro e Rogenes Reis",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pedrohlcastro/interpretador-AFN-/issues"
+  },
+  "homepage": "https://github.com/pedrohlcastro/interpretador-AFN-#readme",
+  "devDependencies": {
+    "eslint": "^4.7.2"
+  },
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "semver": "^5.4.1",
+    "yargs": "^9.0.1"
+  }
+}
