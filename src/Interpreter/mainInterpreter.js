@@ -7,12 +7,12 @@ const runInterpreter = (file, test) => {
     let initialNodes = af[3];
     let finalNodes = af[4];
     let buildEdgesReturn = buildEdges(af);
-    let nodesDict = buildEdgesReturn.nodesDict;
-    let edgeList = buildEdgesReturn.edgeList;
+    let nodesDict = buildEdgesReturn.nodesDict; //helper dictionary
+    let edgeList = buildEdgesReturn.edgeList; // list of edges
     
-    let controlStack = [];
-    let visitedArray = [];
-    let success = false;
+    let controlStack = []; // stack for flux control
+    let visitedArray = []; // visited array
+    let success = false; //success flag
 
     initialNodes.forEach((initial) => {
         let control = {
@@ -34,7 +34,7 @@ const runInterpreter = (file, test) => {
                 let fromNode = currentState.from;
                 let currentDuty = currentState.duty;
                 
-                //check for true entry
+                //check for success entry
                 if(currentDuty == ''){
                     //Final node
                     if(finalNodes.find((e) => { return e == fromNode; })){
@@ -52,11 +52,12 @@ const runInterpreter = (file, test) => {
                             from: pathToGo.to,
                             duty: currentDuty
                         };
-                        if(pathToGo.with != '#'){
+                        if(pathToGo.with != '#'){ // if this path consume one letter
                             control.duty = control.duty.slice(1,);
                         }
                         let edgeList = [];
-                        let nodesDict = {};                      if( visitedArray.find((e) => { return e == control; }) ){
+                        let nodesDict = {};                      
+                        if( visitedArray.find((e) => { return e == control; }) ){
                             return;
                         }
                         controlStack.push(control);
