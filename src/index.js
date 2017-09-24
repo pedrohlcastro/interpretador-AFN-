@@ -24,7 +24,6 @@ let JSONfile;
     await fileHandler(argv.file)
         .then((data) => { 
             JSONfile = data;
-            
         })
         .catch((err) =>{ throw err; });
     

@@ -7,9 +7,9 @@ const fileHandler = (fileName) => {
         fs.readFile(fileName, 'utf-8', (err, data) => {
             if (err) reject(new Error('Cannot Read File - Internal Error'));
             else{
-                let JSONFile = JSON.parse(JSON.stringify(data));
-                // console.log(JSONFile);
-                resolve(JSONFile);
+                let JSONFile =JSON.stringify(data);
+                JSONFile = JSON.parse(JSONFile);
+                resolve(JSON.parse(JSONFile));
             }
         });
     });
