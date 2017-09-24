@@ -7,6 +7,6 @@ for i in $tests; do
     $(node ../src/index.js -f $i -t $i.input > $i.out);
     expected=$(cat $i.expect)
     actual=$(cat $i.out)
-    assert_eq "$expected" "$actual" "not equivalent!"
+    assert_eq "$expected" "$actual" "$i"
 done;
 
