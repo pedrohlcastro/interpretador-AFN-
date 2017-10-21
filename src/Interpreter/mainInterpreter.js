@@ -13,6 +13,8 @@ const runInterpreter = (file, test) => {
     let controlStack = []; // stack for flux control
     let visitedArray = []; // visited array
     let success = false; //success flag
+    
+    // test == '#' ? test = '' : null;
 
     initialNodes.forEach((initial) => {
         let control = {

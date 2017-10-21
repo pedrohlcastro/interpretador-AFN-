@@ -37,12 +37,12 @@ let JSONfile;
     let line;
     if(argv.test){
         readFileTest.eachLine(argv.test, (line, last) => {
-            process.stdout.write(runInterpreter(JSONfile, line)+ '\n');
+            process.stdout.write(runInterpreter(JSONfile, line.replace(/#/g, '')) + '\n');
         });
     } else {
         while(line = readLine.question('')){
             if(line == 'EOF') break;
-            process.stdout.write(runInterpreter(JSONfile, line)+ '\n');
+            process.stdout.write(runInterpreter(JSONfile, line.replace(/#/g, '')) + '\n');
         }
     }
 })()
