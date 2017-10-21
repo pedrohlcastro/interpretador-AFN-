@@ -1,6 +1,7 @@
 'use strict';
 
 const buildEdges = require('./buildEdges');
+// const readLine = require('readline-sync');
 
 const runInterpreter = (file, test) => {
     let af = file.af;
@@ -14,7 +15,6 @@ const runInterpreter = (file, test) => {
     let visitedArray = []; // visited array
     let success = false; //success flag
     
-    // test == '#' ? test = '' : null;
 
     initialNodes.forEach((initial) => {
         let control = {
@@ -23,7 +23,7 @@ const runInterpreter = (file, test) => {
         };
 
         //Already used this state
-        if( visitedArray.find((e) => { return e == control; }) ){
+        if( visitedArray.find((e) => {JSON.stringify(e) == JSON.stringify(control); }) ){
             return;
         } else {
             controlStack.push(control);
@@ -57,11 +57,11 @@ const runInterpreter = (file, test) => {
                         if(pathToGo.with != '#'){ // if this path consume one letter
                             control.duty = control.duty.slice(1,);
                         }
-                        let edgeList = [];
-                        let nodesDict = {};                      
-                        if( visitedArray.find((e) => { return e == control; }) ){
+                     
+                        if( visitedArray.find((e) => { return JSON.stringify(e) == JSON.stringify(control) }) ){
                             return;
                         }
+
                         controlStack.push(control);
                     });
                 // console.log('\nPilha:');
@@ -69,6 +69,7 @@ const runInterpreter = (file, test) => {
                 // console.log('\nVisitado:');
                 // console.log(visitedArray);
                 // console.log('\n_________________________\n:');
+                // readLine.question('');
             }
         }
     });
