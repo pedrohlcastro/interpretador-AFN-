@@ -74,7 +74,7 @@ const runInterpreter = (file, test) => {
         }
     });
     
-    return success ? 'Sim' : 'Não'; 
+    return success ? 'sim' : 'nao'; 
 };
 
 module.exports = runInterpreter;
